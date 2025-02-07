@@ -19,7 +19,8 @@ class Film extends Model
         'durasi',
         'age_rating',
         'harga',
-        'status'
+        'status',
+        'trailer'
     ];
     public $timestamps = true;
 

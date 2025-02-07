@@ -34,8 +34,9 @@ class FilmController extends Controller
             'durasi' => 'required',
             'age_rating' => 'required',
             'harga' => 'required',
-            'status' => 'required',
+            'status' => 'required|in:coming_soon,playing,ended',
             'poster' => 'required|image|mimes:jpeg,jpg,png|max:10048',
+            'trailer' => 'required',
         ]);
 
         $film = new Film();
@@ -47,13 +48,15 @@ class FilmController extends Controller
         $film->durasi = $request->durasi;
         $film->age_rating = $request->age_rating;
         $film->harga = $request->harga;
-        $film->status = $request->film_id;
+        $film->status = $request->status;
+        $film->trailer = $request->trailer;
 
         // Upload poster
         $poster = $request->file('poster');
         $poster->storeAs('public/films', $poster->hashName());
         $film->poster = $poster->hashName();
         $film->save();
+
 
         Alert::success('Success', 'Data berhasil ditambah')->autoClose(1000);
         return redirect()->route('film.index');
@@ -67,9 +70,9 @@ class FilmController extends Controller
 
     public function edit($id)
     {
-        $kategori = Kategori::all();
+        $genre = Genre::all();
         $film = Film::findOrFail($id);
-        return view('admin.film.edit', compact('film', 'kategori'));
+        return view('admin.film.edit', compact('film', 'genre'));
     }
 
     public function update(Request $request, $id)
@@ -85,6 +88,7 @@ class FilmController extends Controller
             'harga' => 'required',
             'status' => 'required',
             'poster' => 'required|image|mimes:jpeg,jpg,png|max:10048',
+            'trailer' => 'required',
         ]);
 
         $film = Film::findOrFail($id);
@@ -96,7 +100,8 @@ class FilmController extends Controller
         $film->durasi = $request->durasi;
         $film->age_rating = $request->age_rating;
         $film->harga = $request->harga;
-        $film->status = $request->film_id;
+        $film->status = $request->status;
+        $film->trailer = $request->trailer;
 
         // Upload poster if new poster is provided
         if ($request->hasFile('poster')) {

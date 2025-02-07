@@ -25,6 +25,7 @@ return new class extends Migration
             $table->integer('age_rating');
             $table->integer('harga');
             $table->enum('status', ['coming_soon', 'playing', 'ended'])->nullable()->default('coming_soon');
+            $table->string('trailer');
 
             $table->foreign('genre_id')->references('id')->on('genres')->onDelete('cascade');
 

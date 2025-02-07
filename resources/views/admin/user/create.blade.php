@@ -19,7 +19,7 @@
                 <div class="card-body">
                     <form action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <div class="mb-2">
+                        <div class="mb-3">
                             <label class="form-label">Nama</label>
                             <input type="text" class="form-control @error('user') is-invalid @enderror" name="name"
                             value="{{ old('user') }}" placeholder="Nama" required>
@@ -29,7 +29,7 @@
                                 </span>
                             @enderror
                         </div>
-                        <div class="mb-2">
+                        <div class="mb-3">
                             <label class="form-label">Tanggal Lahir</label>
                             <input type="date" class="form-control @error('tanggal_lahir') is-invalid @enderror" name="tanggal_lahir"
                             value="{{ old('tanggal_lahir') }}" required>
@@ -39,7 +39,7 @@
                                 </span>
                             @enderror
                         </div>
-                        <div class="mb-2">
+                        <div class="mb-3">
                             <label class="form-label">Email</label>
                             <input type="text" class="form-control" @error('email') is-invalid @enderror name="email"
                             value="{{ old('email') }}" placeholder="Email" required>
@@ -49,7 +49,7 @@
                             </span>
                             @enderror
                         </div>
-                        <div class="mb-2">
+                        <div class="mb-3">
                             <label class="form-label">Password</label>
                             <input type="password" class="form-control" @error('password') is-invalid @enderror name="password"
                             value="{{ old('password') }}" rows="3" placeholder="Password" required></input>
@@ -59,7 +59,7 @@
                             </span>
                             @enderror
                         </div>
-                        <div class="mb-2">
+                        <div class="mb-3">
                             <label class="form-label">Pilih Peran</label>
                             <select class="form-control" name="isAdmin" id="isAdmin" required>
                                 <option value="0" {{old('isAdmin')==0 ? 'selected' : ''}}>User</option>

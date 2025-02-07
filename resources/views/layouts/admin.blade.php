@@ -86,6 +86,9 @@
         <!-- / end Content -->
 
 
+        @yield('scripts')
+
+
         <!-- Footer -->
         {{-- @include('layouts.admin.footer') --}}
         <!-- / end Footer -->

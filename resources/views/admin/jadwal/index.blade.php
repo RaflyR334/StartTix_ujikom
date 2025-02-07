@@ -22,9 +22,9 @@
                 <thead>
                     <tr>
                         <th>No</th>
+                        <th>Aksi</th>
                         <th>Tanggal</th>
                         <th>Jam</th>
-                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
@@ -32,8 +32,6 @@
                     @foreach ($jadwal as $data)
                     <tr>
                         <td>{{$i++}}</td>
-                        <td>{{$data->tanggal}}</td>
-                        <td>{{$data->jam}}</td>
                         <td>
                             <form action="{{route('jadwal.destroy', $data->id)}}" method="post">
                                 @csrf
@@ -46,6 +44,8 @@
                                 </button>
                             </form>
                         </td>
+                        <td>{{$data->tanggal}}</td>
+                        <td>{{$data->jam}}</td>
                     </tr>
                     @endforeach
                 </tbody>

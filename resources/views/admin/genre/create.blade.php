@@ -19,7 +19,7 @@
                 <div class="card-body">
                     <form action="{{ route('genre.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <div class="mb-2">
+                        <div class="mb-3">
                             <label class="form-label">Nama Genre</label>
                             <input type="text" class="form-control @error('genre') is-invalid @enderror" name="nama_genre"
                             value="{{ old('genre') }}" placeholder="Nama Genre" required>
@@ -30,7 +30,7 @@
                             @enderror
                             <br>
                         </div>
-                        <div class="mb-2">
+                        <div class="mb-3">
                             <label class="form-label">Slug</label>
                             <input type="text" class="form-control @error('slug') is-invalid @enderror" name="slug"
                             value="{{ old('slug') }}" placeholder="Slug" required>

@@ -21,7 +21,7 @@
                         @csrf
                         @method('PUT')
 
-                        <div class="mb-2">
+                        <div class="mb-3">
                             <label class="form-label">Genre</label>
                             <input type="text" class="form-control @error('nama_genre') is-invalid @enderror" name="nama_genre"
                                 value="{{ old('name', $genre->nama_genre) }}" placeholder="genre" required>
@@ -31,7 +31,7 @@
                             </span>
                             @enderror
                         </div>
-                        <div class="mb-2">
+                        <div class="mb-3">
                             <label class="form-label">Slug</label>
                             <input type="text" class="form-control @error('slug') is-invalid @enderror" name="slug"
                                 value="{{ old('name', $slug->slug) }}" placeholder="slug" required>

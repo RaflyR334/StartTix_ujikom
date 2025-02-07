@@ -4,14 +4,14 @@
 @endsection
 
 @section('content')
-<h4 class="py-3 mb-4"><span class="text-muted fw-light">Tables /</span> Genre</h4>
+<h4 class="py-3 mb-4"><span class="text-muted fw-light">Tables /</span> Kursi</h4>
 <div class="card">
     <div class="card-header">
         <div class="float-start">
-            <h5>GENRE</h5>
+            <h5>KURSI</h5>
         </div>
         <div class="float-end">
-            <a href="{{route('genre.create')}}" class="btn btn-sm btn-primary">
+            <a href="{{route('kursi.create')}}" class="btn btn-sm btn-primary">
                 <i class="fas fa-plus"></i>
             </a>
         </div>
@@ -23,20 +23,21 @@
                     <tr>
                         <th>No</th>
                         <th>Aksi</th>
-                        <th>Nama Genre</th>
-                        <th>Slug</th>
+                        <th>No Kursi</th>
+                        <th>Tipe Kursi</th>
+                        <th>Status Kursi</th>
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
                     @php $i=1; @endphp
-                    @foreach ($genre as $data)
+                    @foreach ($kursi as $data)
                     <tr>
                         <td>{{$i++}}</td>
                         <td>
-                            <form action="{{route('genre.destroy', $data->id)}}" method="post">
+                            <form action="{{route('kursi.destroy', $data->id)}}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <a href="{{route('genre.edit', $data->id)}}" class="btn btn-sm btn-warning">
+                                <a href="{{route('kursi.edit', $data->id)}}" class="btn btn-sm btn-warning">
                                     <i class="fas fa-edit"></i>
                                 </a>
                                 <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are You Sure?')">
@@ -44,8 +45,9 @@
                                 </button>
                             </form>
                         </td>
-                        <td>{{$data->nama_genre}}</td>
-                        <td>{{$data->slug}}</td>
+                        <td>{{$data->no_kursi}}</td>
+                        <td>{{$data->tipe_kursi}}</td>
+                        <td>{{$data->status_kursi}}</td>
                     </tr>
                     @endforeach
                 </tbody>

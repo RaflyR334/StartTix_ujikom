@@ -21,8 +21,8 @@
             <table class="table" id="example">
                 <thead>
                     <tr>
-                        <th>Aksi</th>
                         <th>No</th>
+                        <th>Aksi</th>
                         <th>Judul</th>
                         <th>Slug</th>
                         <th>Deskripsi</th>
@@ -39,10 +39,14 @@
                     @php $i=1; @endphp
                     @foreach ($film as $data)
                     <tr>
+                        <td>{{$i++}}</td>
                         <td>
                             <form action="{{route('film.destroy', $data->id)}}" method="post">
                                 @csrf
                                 @method('DELETE')
+                                <a href="{{route('film.show', $data->id)}}" class="btn btn-sm btn-info">
+                                    <i class="fas fa-eye"></i>
+                                </a>
                                 <a href="{{route('film.edit', $data->id)}}" class="btn btn-sm btn-warning">
                                     <i class="fas fa-edit"></i>
                                 </a>
@@ -51,7 +55,6 @@
                                 </button>
                             </form>
                         </td>
-                        <td>{{$i++}}</td>
                         <td>{{$data->judul}}</td>
                         <td>{{$data->slug}}</td>
                         <td>{{$data->deskripsi}}</td>
@@ -60,7 +63,18 @@
                         <td>{{$data->durasi}}</td>
                         <td>{{$data->age_rating}}</td>
                         <td>{{$data->harga}}</td>
-                        <td>{{$data->status}}</td>
+                        <td>
+                            @switch($data->status)
+                                @case('coming_soon')
+                                    Coming Soon
+                                    @break
+                                @case('playing')
+                                    Playing
+                                    @break
+                                @case('ended')
+                                    Ended
+                            @endswitch
+                        </td>
                         <td>
                             <img src="{{ asset('/storage/films/' . $data->poster) }}" class="rounded"
                                 style="width: 150px">

@@ -60,7 +60,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="mb-2">
+                        <div class="mb-3">
                             <label class="form-label">Tahun Rilis</label>
                             <input type="date" class="form-control @error('tahun_rilis') is-invalid @enderror" name="tahun_rilis"
                             value="{{ old('tahun_rilis') }}" required>
@@ -69,17 +69,6 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                        </div>
-                        <div class="mb-2">
-                            <label class="form-label">Durasi</label>
-                            <input type="text" class="form-control @error('durasi') is-invalid @enderror" name="durasi"
-                            value="{{ old('durasi') }}" placeholder="Durasi" required>
-                            @error('durasi')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                            <br>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Batas Usia</label>
@@ -101,13 +90,35 @@
                             </span>
                             @enderror
                         </div>
-                        <div class="mb-2">
+                        <div class="mb-3">
                             <label class="form-label">Status</label>
                             <select class="form-control" name="status" id="status" required>
-                                <option value="1" {{old('status')== "coming_soon" ? 'selected' : ''}}>Coming Soon</option>
-                                <option value="2" {{old('status')== "playing" ? 'selected' : ''}}>Playing</option>
-                                <option value="3" {{old('status')== "ended" ? 'selected' : ''}}>Ended</option>
+                                <option value="coming_soon" {{old('status')== "coming_soon" ? 'selected' : ''}}>Coming Soon</option>
+                                <option value="playing" {{old('status')== "playing" ? 'selected' : ''}}>Playing</option>
+                                <option value="ended" {{old('status')== "ended" ? 'selected' : ''}}>Ended</option>
                             </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Durasi</label>
+                            <input type="text" class="form-control @error('durasi') is-invalid @enderror" name="durasi"
+                            value="{{ old('durasi') }}" placeholder="Durasi" required>
+                            @error('durasi')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                            <br>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Trailer Url</label>
+                            <input type="text" class="form-control @error('trailer') is-invalid @enderror" name="trailer"
+                            value="{{ old('trailer') }}" placeholder="https://....." required>
+                            @error('trailer')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                            <br>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Poster</label>

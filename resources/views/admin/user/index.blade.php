@@ -23,11 +23,11 @@
                 <thead>
                     <tr>
                         <th>No</th>
+                        <th>Aksi</th>
                         <th>Nama</th>
                         <th>Tanggal Lahir</th>
                         <th>Email</th>
                         <th>Peran</th>
-                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
@@ -36,20 +36,15 @@
                         @if ($loop->first)
                                   <tr>
                         <td>{{ $i++ }}</td>
+                        <td></td>
                         <td>{{ $data->name }}</td>
                         <td>{{ $data->tanggal_lahir }}</td>
                         <td>{{ $data->email }}</td>
                         <td>{{ $data->isAdmin == 1 ? 'admin' : 'user' }}</td>
-                        <td>
-                            </td>
                         </tr>
                         @else
                             <tr>
                                 <td>{{ $i++ }}</td>
-                                <td>{{ $data->name }}</td>
-                                <td>{{ $data->tanggal_lahir }}</td>
-                                <td>{{ $data->email }}</td>
-                                <td>{{ $data->isAdmin == 1 ? 'admin' : 'user' }}</td>
                                 <td>
                                     <form action="{{route('user.destroy', $data->id)}}" method="post">
                                         @csrf
@@ -62,6 +57,10 @@
                                         </button>
                                     </form>
                                 </td>
+                                <td>{{ $data->name }}</td>
+                                <td>{{ $data->tanggal_lahir }}</td>
+                                <td>{{ $data->email }}</td>
+                                <td>{{ $data->isAdmin == 1 ? 'admin' : 'user' }}</td>
                             </tr>
                         @endif
                     @endforeach
