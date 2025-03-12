@@ -26,7 +26,7 @@ class FilmController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'judul' => 'required',
+            'judul' => 'required|unique:films,judul',
             'slug' => 'required',
             'deskripsi' => 'required',
             'genre_id' => 'required',
@@ -37,6 +37,8 @@ class FilmController extends Controller
             'status' => 'required|in:coming_soon,playing,ended',
             'poster' => 'required|image|mimes:jpeg,jpg,png|max:10048',
             'trailer' => 'required',
+        ], [
+            'judul.unique' => 'Judul film sudah ada. Silakan pilih judul yang lain.'
         ]);
 
         $film = new Film();
@@ -86,7 +88,7 @@ class FilmController extends Controller
             'durasi' => 'required',
             'age_rating' => 'required',
             'harga' => 'required',
-            'status' => 'required',
+            'status' => 'required|in:coming_soon,playing,ended',
             'poster' => 'required|image|mimes:jpeg,jpg,png|max:10048',
             'trailer' => 'required',
         ]);
@@ -121,8 +123,8 @@ class FilmController extends Controller
     {
         $film = Film::findOrFail($id);
 
-        // Delete image from storage
-        Storage::delete('public/films/' . $film->image);
+        // Delete poster from storage
+        Storage::delete('public/films/' . $film->poster);
 
         // Delete the product
         $film->delete();

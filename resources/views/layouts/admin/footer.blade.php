@@ -1,27 +1,17 @@
-{{-- <footer class="footer">
-    <div class="container-fluid d-flex justify-content-between">
-      <nav class="pull-left">
-        <ul class="nav">
-          <li class="nav-item">
-            <a class="nav-link" href="http://www.themekita.com">
-              ThemeKita
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#"> Help </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#"> Licenses </a>
-          </li>
-        </ul>
-      </nav>
-      <div class="copyright">
-        2024, made with <i class="fa fa-heart heart text-danger"></i> by
-        <a href="http://www.themekita.com">ThemeKita</a>
-      </div>
-      <div>
-        Distributed by
-        <a target="_blank" href="https://themewagon.com/">ThemeWagon</a>.
-      </div>
+<!-- Footer -->
+{{-- <footer class="iq-footer">
+    <div class="container-fluid">
+       <div class="row">
+          <div class="col-lg-6">
+             <ul class="list-inline mb-0">
+                <li class="list-inline-item"><a href="privacy-policy.html">Privacy Policy</a></li>
+                <li class="list-inline-item"><a href="terms-of-service.html">Terms of Use</a></li>
+             </ul>
+          </div>
+          <div class="col-lg-6 text-right">
+             Copyright 2025 <a href="#">StartTix By Mochamad Rafly Rasyidin</a> All Rights Reserved.
+          </div>
+       </div>
     </div>
-  </footer> --}}
+ </footer> --}}
+ <!-- Footer END -->

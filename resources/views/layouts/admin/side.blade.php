@@ -51,13 +51,13 @@
                 </li>
 
                 <!-- Data Table Menu -->
-                <li class="nav-item {{ request()->is('admin/genre*') || request()->is('admin/jadwal*') || request()->is('admin/film*') || request()->is('admin/kursi*') ? 'active' : '' }}">
-                    <a data-bs-toggle="collapse" href="#base" aria-expanded="{{ request()->is('admin/genre*') || request()->is('admin/jadwal*') || request()->is('admin/film*') || request()->is('admin/kursi*') ? 'true' : 'false' }}">
+                <li class="nav-item {{ request()->is('admin/genre*') || request()->is('admin/jadwal*') || request()->is('admin/film*') || request()->is('admin/kursi*') || request()->is('admin/bisokop*') || request()->is('admin/studio*')  ? 'active' : '' }}">
+                    <a data-bs-toggle="collapse" href="#base" aria-expanded="{{ request()->is('admin/genre*') || request()->is('admin/jadwal*') || request()->is('admin/film*') || request()->is('admin/kursi*') || request()->is('admin/bioskop*') || request()->is('admin/studio*')  ? 'true' : 'false' }}">
                         <i class="fas fa-layer-group"></i>
                         <p>Data Tabel</p>
                         <span class="caret"></span>
                     </a>
-                    <div class="collapse {{ request()->is('admin/genre*') || request()->is('admin/jadwal*') || request()->is('admin/film*') || request()->is('admin/kursi*') ? 'show' : '' }}" id="base">
+                    <div class="collapse {{ request()->is('admin/genre*') || request()->is('admin/jadwal*') || request()->is('admin/film*') || request()->is('admin/kursi*') || request()->is('admin/bioskop*') || request()->is('admin/studio*')  ? 'show' : '' }}" id="base">
                         <ul class="nav nav-collapse">
                             <li>
                                 <a href="{{ route('genre.index') }}">
@@ -80,8 +80,13 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="components/gridsystem.html">
-                                    <span class="sub-item">Transaksi</span>
+                                <a href="{{ route('studio.index') }}">
+                                    <span class="sub-item">Studio</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('bioskop.index') }}">
+                                    <span class="sub-item">Bioskop</span>
                                 </a>
                             </li>
                         </ul>

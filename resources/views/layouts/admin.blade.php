@@ -3,15 +3,8 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>StartTix - Admin Dashboard</title>
-    <meta
-      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
-      name="viewport"
-    />
-    <link
-      rel="icon"
-      href="{{asset('assets/img/kaiadmin/favicon.ico')}}"
-      type="image/x-icon"
-    />
+    <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
+    <link rel="icon" href="{{asset('assets/img/kaiadmin/favicon.ico')}}" type="image/x-icon" />
 
     <!-- Fonts and icons -->
     <script src="{{asset('assets/js/plugin/webfont/webfont.min.js')}}"></script>
@@ -41,8 +34,89 @@
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link rel="stylesheet" href="{{asset('assets/css/demo.css')}}" />
     @yield('styles')
+
+    <!-- Loader Styles -->
+    <style>
+      /* Loader styles */
+      #loading {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 1); /* White background */
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: opacity 1s ease, visibility 0s 1s; /* Smooth transition for opacity */
+      }
+
+      /* Center the loader icon */
+      #loading-center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      /* Custom "S" logo animation */
+      .loader-logo {
+        font-size: 50px;
+        font-weight: bold;
+        color: #007bff; /* You can change the color of the "S" */
+        animation: rotateLogo 2s linear infinite;
+      }
+
+      /* Animation for rotating the logo */
+      @keyframes rotateLogo {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Bounce effect for the letter "S" */
+      .loader-s {
+        font-family: 'Arial', sans-serif;
+        color: #007bff; /* Blue color for "S" */
+        display: inline-block;
+        animation: bounceS 1s infinite;
+      }
+
+      /* Bounce effect animation */
+      @keyframes bounceS {
+        0% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
+
+      /* After the page is loaded, we want to hide the loader */
+      #loading.loaded {
+        opacity: 0;
+        visibility: hidden; /* Remove the loader entirely */
+      }
+    </style>
   </head>
   <body>
+    <!-- Loader Start -->
+    <div id="loading">
+      <div id="loading-center">
+        <!-- "S" Logo Animation -->
+        <div class="loader-logo">
+          <span class="loader-s">S</span>
+        </div>
+      </div>
+    </div>
+    <!-- Loader END -->
+
     <div class="wrapper">
       <!-- Sidebar -->
       @include('layouts.admin.side')
@@ -80,22 +154,15 @@
           <!-- End Navbar -->
         </div>
 
-
         <!-- Content -->
         @yield('content')
         <!-- / end Content -->
 
-
         @yield('scripts')
-
-
-        <!-- Footer -->
-        {{-- @include('layouts.admin.footer') --}}
-        <!-- / end Footer -->
       </div>
-
     </div>
-    <!--   Core JS Files   -->
+
+    <!-- Core JS Files -->
     <script src="{{asset('assets/js/core/jquery-3.7.1.min.js')}}"></script>
     <script src="{{asset('assets/js/core/popper.min.js')}}"></script>
     <script src="{{asset('assets/js/core/bootstrap.min.js')}}"></script>
@@ -115,9 +182,6 @@
     <!-- Datatables -->
     <script src="{{asset('assets/js/plugin/datatables/datatables.min.js')}}"></script>
 
-    <!-- Bootstrap Notify -->
-    {{-- <script src="{{asset('assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js')}}"></script> --}}
-
     <!-- jQuery Vector Maps -->
     <script src="{{asset('assets/js/plugin/jsvectormap/jsvectormap.min.js')}}"></script>
     <script src="{{asset('assets/js/plugin/jsvectormap/world.js')}}"></script>
@@ -131,32 +195,18 @@
     <!-- Kaiadmin DEMO methods, don't include it in your project! -->
     <script src="{{asset('assets/js/setting-demo.js')}}"></script>
     <script src="{{asset('assets/js/demo.js')}}"></script>
+
+    <!-- Custom JavaScript to hide loader after content loads -->
     <script>
-      $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
-        type: "line",
-        height: "70",
-        width: "100%",
-        lineWidth: "2",
-        lineColor: "#177dff",
-        fillColor: "rgba(23, 125, 255, 0.14)",
-      });
+      // Wait until the window is completely loaded before hiding the loader
+      $(window).on('load', function() {
+          // Add class 'loaded' to change opacity and visibility, effectively hiding the loader
+          $("#loading").addClass('loaded');
 
-      $("#lineChart2").sparkline([99, 125, 122, 105, 110, 124, 115], {
-        type: "line",
-        height: "70",
-        width: "100%",
-        lineWidth: "2",
-        lineColor: "#f3545d",
-        fillColor: "rgba(243, 84, 93, .14)",
-      });
-
-      $("#lineChart3").sparkline([105, 103, 123, 100, 95, 105, 115], {
-        type: "line",
-        height: "70",
-        width: "100%",
-        lineWidth: "2",
-        lineColor: "#ffa534",
-        fillColor: "rgba(255, 165, 52, .14)",
+          // Fade out the loader completely after a short delay
+          setTimeout(function() {
+              $("#loading").fadeOut(0); // Immediate fadeout without delay
+          }, 300); // Fade out after 300ms delay to ensure the opacity transition is seen
       });
     </script>
   </body>

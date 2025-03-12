@@ -38,8 +38,11 @@ class GenreController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'nama_genre' => 'required',
-            'slug' => 'required',
+            'nama_genre' => 'required|unique:genres,nama_genre',
+            'slug' => 'required|unique:genres,slug',
+        ],[
+            'nama_genre.unique' => 'Nama genre sudah ada. Silakan pilih nama lain.',
+            'slug.unique' => 'Slug sudah ada. Silakan pilih slug lain.',
         ]);
 
         $genre = new Genre();

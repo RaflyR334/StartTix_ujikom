@@ -38,9 +38,11 @@ class KursiController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'no_kursi' => 'required',
+            'no_kursi' => 'required|unique:kursis,no_kursi',
             'tipe_kursi' => 'required',
             'status_kursi' => 'required',
+        ], [
+            'no_kursi.unique' => 'Nomor kursi sudah ada. Silakan pilih nomor lain.'
         ]);
 
         $kursi = new Kursi();

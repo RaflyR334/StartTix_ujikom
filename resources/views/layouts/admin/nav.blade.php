@@ -120,25 +120,36 @@
                 </li>
 
                 <li class="nav-item topbar-user dropdown hidden-caret">
-                  <a
-                    class="dropdown-toggle profile-pic"
-                    data-bs-toggle="dropdown"
-                    href="#"
-                    aria-expanded="false"
-                  >
-                    <div class="avatar-sm">
-                      <img
-                        src="{{asset('assets/img/profile.jpg')}}"
-                        alt="..."
-                        class="avatar-img rounded-circle"
-                      />
-                    </div>
-                    <span class="profile-username">
-                      <span class="op-7">Hi,</span>
-                      <span class="fw-bold">Hizrian</span>
-                    </span>
-                  </a>
-                </li>
+                    <a class="dropdown-toggle profile-pic" data-bs-toggle="dropdown" href="#" aria-expanded="false">
+                      <div class="avatar-sm">
+                        <img src="{{asset('assets/img/profile.jpg')}}" alt="..." class="avatar-img rounded-circle" />
+                      </div>
+                      <span class="profile-username">
+                        <span class="op-7">Hi,</span>
+                        <span class="fw-bold">Hizrian</span>
+                      </span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user animated fadeIn" aria-labelledby="profileDropdown">
+                      <li>
+                        <a href="#" class="dropdown-item">
+                          <i class="fa fa-user"></i> Profile
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#" class="dropdown-item">
+                          <i class="fa fa-cogs"></i> Settings
+                        </a>
+                      </li>
+                      <li>
+                        <a href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dropdown-item">
+                          <i class="fa fa-sign-out-alt"></i> Logout
+                        </a>
+                        <form action="{{route('logout')}}" method="POST" id="logout-form">
+                        @csrf
+                        </form>
+                      </li>
+                    </ul>
+                  </li>
               </ul>
             </div>
           </nav>
