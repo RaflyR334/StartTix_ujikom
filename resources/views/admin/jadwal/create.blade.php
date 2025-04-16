@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+
 @section('styles')
 @endsection
 
@@ -37,6 +38,30 @@
                         <form action="{{ route('jadwal.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3">
+                                <label for="">Film</label>
+                                <select name="film_id" id="" class="form-control">
+                                    @foreach ($film as $item)
+                                        <option value="{{$item->id}}">{{ $item->judul }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="">Bioskop</label>
+                                <select name="bioskop_id" id="" class="form-control">
+                                    @foreach ($bioskop as $item)
+                                        <option value="{{$item->id}}">{{ $item->nama_bioskop }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="">Studio</label>
+                                <select name="studio_id" id="" class="form-control">
+                                    @foreach ($studio as $item)
+                                        <option value="{{$item->id}}">{{ $item->nama_studio }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="mb-3">
                                 <label class="form-label">Tanggal</label>
                                 <input type="date" class="form-control @error('tanggal') is-invalid @enderror" name="tanggal"
                                 value="{{ old('tanggal') }}" required>
@@ -66,7 +91,5 @@
     </div>
 </div>
 @endsection
-
 @push('scripts')
 @endpush
-

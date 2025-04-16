@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+
 @section('styles')
 @endsection
 
@@ -38,9 +39,33 @@
                             @csrf
                             @method('PUT')
                             <div class="mb-3">
+                                <label for="">Film</label>
+                                <select name="film_id" id="" class="form-control">
+                                    @foreach ($film as $item)
+                                        <option value="{{$item->id}}" {{ $jadwal->film_id == $item->id ? 'selected' : '' }}>{{ $item->judul }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="">Bioskop</label>
+                                <select name="bioskop_id" id="" class="form-control">
+                                    @foreach ($bioskop as $item)
+                                        <option value="{{$item->id}}" {{ $jadwal->bioskop_id == $item->id ? 'selected' : '' }}>{{ $item->nama_bioskop }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="">Studio</label>
+                                <select name="studio_id" id="" class="form-control">
+                                    @foreach ($studio as $item)
+                                        <option value="{{$item->id}}" {{ $jadwal->studio_id == $item->id ? 'selected' : '' }}>{{ $item->nama_studio }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="mb-3">
                                 <label class="form-label">Tanggal</label>
                                 <input type="date" class="form-control @error('tanggal') is-invalid @enderror" name="tanggal"
-                                value="{{ old('tanggal') }}" required>
+                                value="{{ old('tanggal', $jadwal->tanggal) }}" required>
                                 @error('tanggal')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -70,4 +95,3 @@
 
 @push('scripts')
 @endpush
-

@@ -76,8 +76,9 @@ class StudioController extends Controller
      */
     public function edit($id)
     {
-        $bioskop = Studio::findOrFail($id);
-        return view('admin.studio.edit', compact('studio'));
+        $bioskop = Bioskop::all();
+        $studio = Studio::findOrFail($id);
+        return view('admin.studio.edit', compact('bioskop', 'studio'));
     }
 
     /**

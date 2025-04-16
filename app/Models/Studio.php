@@ -16,7 +16,17 @@ class Studio extends Model
     ];
     public $timestamps = true;
 
-    public function bioskop(){
+    public function bioskop()
+    {
         return $this->BelongsTo(Bioskop::class);
+    }
+    public function jadwal()
+    {
+        return $this->hasMany(Jadwal::class);
+    }
+
+    public function kursi()
+    {
+        return $this->hasMany(Kursi::class);
     }
 }

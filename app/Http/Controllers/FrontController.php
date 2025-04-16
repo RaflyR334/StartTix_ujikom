@@ -24,11 +24,8 @@ class FrontController extends Controller
 
     public function show($id)
     {
-    $film = Film::findOrFail($id);
-    $bioskop = Bioskop::all();
-    $jadwal = Jadwal::all();
-    $studio = Studio::all();
-    return view('detail', compact('film', 'bioskop', 'jadwal', 'studio'));
+        $film = Film::findOrFail($id);
+        return view('detail', compact('film'));
     }
 
     public function about()

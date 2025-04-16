@@ -24,7 +24,12 @@ class Film extends Model
     ];
     public $timestamps = true;
 
-    public function genre(){
+    public function genre()
+    {
         return $this->BelongsTo(Genre::class);
+    }
+    public function jadwal()
+    {
+        return $this->hasMany(Jadwal::class);
     }
 }

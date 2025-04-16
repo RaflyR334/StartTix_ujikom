@@ -5,24 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Kursi extends Model
+class Pembayaran extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'studio_id',
-        'no_kursi',
-        'tipe_kursi',
+        'pemesanan_id',
+        'metode',
+        'status',
+        'bukti_bayar'
     ];
     public $timestamps = true;
 
-    public function studio()
-    {
-        return $this->belongsTo(Studio::class);
-    }
-
     public function pemesanan()
     {
-        return $this->hasMany(Pemesanan::class);
+    return $this->belongsTo(Pemesanan::class);
     }
+
 }

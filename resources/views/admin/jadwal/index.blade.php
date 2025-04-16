@@ -23,6 +23,9 @@
                     <tr>
                         <th>No</th>
                         <th>Aksi</th>
+                        <th>Film</th>
+                        <th>Bioskop</th>
+                        <th>Studio</th>
                         <th>Tanggal</th>
                         <th>Jam</th>
                     </tr>
@@ -44,6 +47,9 @@
                                 </button>
                             </form>
                         </td>
+                        <td>{{$data->film->judul}}</td>
+                        <td>{{$data->bioskop->nama_bioskop}}</td>
+                        <td>{{$data->studio->nama_studio}}</td>
                         <td>{{$data->tanggal}}</td>
                         <td>{{$data->jam}}</td>
                     </tr>

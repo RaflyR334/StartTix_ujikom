@@ -7,7 +7,8 @@ return [
     /*
     |--------------------------------------------------------------------------
     | Stateful Domains
-    |--------------------------------------------------------------------------
+    |--------------------------------------------------------------
+    ------------
     |
     | Requests from the following domains / hosts will receive stateful API
     | authentication cookies. Typically, these should include your local
@@ -17,7 +18,7 @@ return [
 
     'stateful' => explode(',', env('SANCTUM_STATEFUL_DOMAINS', sprintf(
         '%s%s',
-        'localhost,localhost:3000,127.0.0.1,127.0.0.1:8000,::1',
+        'localhost,localhost:3000,127.0.0.1,127.0.0.1:8000,192.168.43.110,192.168.43.110:8000,10.10.9.246,10.10.9.246:8000::1',
         Sanctum::currentApplicationUrlWithPort()
     ))),
 

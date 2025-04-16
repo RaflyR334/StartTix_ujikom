@@ -15,7 +15,12 @@ class Bioskop extends Model
     ];
     public $timestamps = true;
 
-    public function studio(){
+    public function studio()
+    {
         return $this->hasMany(Studio::class);
+    }
+    public function jadwal()
+    {
+        return $this->hasMany(Jadwal::class);
     }
 }

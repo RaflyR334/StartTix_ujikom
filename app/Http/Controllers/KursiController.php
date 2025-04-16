@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Kursi;
+use App\Models\Studio;
 Use Alert;
 
 class KursiController extends Controller
@@ -26,7 +27,8 @@ class KursiController extends Controller
      */
     public function create()
     {
-        return view('admin.kursi.create');
+        $studio= Studio::all();
+        return view('admin.kursi.create', compact( 'studio'));
     }
 
     /**
@@ -38,17 +40,17 @@ class KursiController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+            'studio_id' => 'required',
             'no_kursi' => 'required|unique:kursis,no_kursi',
             'tipe_kursi' => 'required',
-            'status_kursi' => 'required',
         ], [
             'no_kursi.unique' => 'Nomor kursi sudah ada. Silakan pilih nomor lain.'
         ]);
 
         $kursi = new Kursi();
+        $kursi->studio_id= $request->studio_id;
         $kursi->no_kursi = $request->no_kursi;
         $kursi->tipe_kursi = $request->tipe_kursi;
-        $kursi->status_kursi = $request->status_kursi;
         $kursi->save();
 
         Alert::success('success', "data berhasil ditambah")->autoClose(1000);
@@ -74,8 +76,9 @@ class KursiController extends Controller
      */
     public function edit($id)
     {
+        $studio= Studio::all();
         $kursi = Kursi::findOrFail($id);
-        return view('admin.kursi.edit', compact('kursi'));
+        return view('admin.kursi.edit', compact('kursi', 'studio'));
     }
 
     /**
@@ -88,15 +91,15 @@ class KursiController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
+            'studio_id' => 'required',
             'no_kursi' => 'required',
             'tipe_kursi' => 'required',
-            'status_kursi' => 'required',
         ]);
 
         $kursi = Kursi::findOrFail($id);
+        $kursi->studio_id= $request->studio_id;
         $kursi->no_kursi = $request->no_kursi;
         $kursi->tipe_kursi = $request->tipe_kursi;
-        $kursi->status_kursi = $request->status_kursi;
         $kursi->save();
 
         Alert::success('success', "data berhasil diubah")->autoClose(1000);

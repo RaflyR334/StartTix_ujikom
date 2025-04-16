@@ -23,9 +23,9 @@
                     <tr>
                         <th>No</th>
                         <th>Aksi</th>
+                        <th>Studio</th>
                         <th>No Kursi</th>
                         <th>Tipe Kursi</th>
-                        <th>Status Kursi</th>
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
@@ -45,9 +45,9 @@
                                 </button>
                             </form>
                         </td>
+                        <td>{{$data->studio->nama_studio}}</td>
                         <td>{{$data->no_kursi}}</td>
                         <td>{{$data->tipe_kursi}}</td>
-                        <td>{{$data->status_kursi}}</td>
                     </tr>
                     @endforeach
                 </tbody>

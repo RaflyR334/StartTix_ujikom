@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Jadwal;
+use App\Models\Film;
+use App\Models\Bioskop;
+use App\Models\Studio;
 Use Alert;
 
 class JadwalController extends Controller
@@ -26,7 +29,10 @@ class JadwalController extends Controller
      */
     public function create()
     {
-        return view('admin.jadwal.create');
+        $film = Film::all();
+        $bioskop = Bioskop::all();
+        $studio= Studio::all();
+        return view('admin.jadwal.create', compact('film', 'bioskop', 'studio'));
     }
 
     /**
@@ -38,11 +44,18 @@ class JadwalController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+            'film_id' => 'required',
+            'bioskop_id' => 'required',
+            'studio_id' => 'required',
+
             'tanggal' => 'required',
             'jam' => 'required',
         ]);
 
         $jadwal = new jadwal();
+        $jadwal->film_id = $request->film_id;
+        $jadwal->bioskop_id = $request->bioskop_id;
+        $jadwal->studio_id= $request->studio_id;
         $jadwal->tanggal = $request->tanggal;
         $jadwal->jam = $request->jam;
         $jadwal->save();
@@ -70,8 +83,11 @@ class JadwalController extends Controller
      */
     public function edit($id)
     {
+        $film = Film::all();
+        $bioskop = Bioskop::all();
+        $studio= Studio::all();
         $jadwal = Jadwal::findOrFail($id);
-        return view('admin.jadwal.edit', compact('jadwal'));
+        return view('admin.jadwal.edit', compact('jadwal', 'film', 'bioskop', 'studio'));
     }
 
     /**
@@ -84,11 +100,18 @@ class JadwalController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
+            'film_id' => 'required',
+            'bioskop_id' => 'required',
+            'studio_id' => 'required',
+
             'tanggal' => 'required',
             'jam' => 'required',
         ]);
 
         $jadwal = Jadwal::findOrFail($id);
+        $jadwal->film_id = $request->film_id;
+        $jadwal->bioskop_id = $request->bioskop_id;
+        $jadwal->studio_id= $request->studio_id;
         $jadwal->tanggal = $request->tanggal;
         $jadwal->jam = $request->jam;
         $jadwal->save();

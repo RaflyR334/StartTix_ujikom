@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\IsAdmin;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PemesananController;
 
 
 Auth::routes();
@@ -35,6 +36,17 @@ Route::get('about-us',[FrontController::class, 'about']);
 Route::get('contact',[FrontController::class, 'contact']);
 Route::get('faq',[FrontController::class, 'faq']);
 Route::get('privacy-policy',[FrontController::class, 'privacy']);
+
+Route::get('/pesan-tiket', [PemesananController::class, 'create'])->name('pesan.tiket');
+
+// Pemesanan
+Route::get('/pemesanan/create', [PemesananController::class, 'create'])->name('pemesanan.create');
+Route::post('/pemesanan', [PemesananController::class, 'store'])->name('pemesanan.store');
+
+// Pembayaran
+Route::get('/pembayaran/{id}', [PembayaranController::class, 'show'])->name('pembayaran.show');
+Route::put('/pembayaran/{id}', [PembayaranController::class, 'update'])->name('pembayaran.update');
+
 
 
 // Route::GET('/genre', [App\Http\Controllers\GenreController::class, 'index'])->name('genre.index');
